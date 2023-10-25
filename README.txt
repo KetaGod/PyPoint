@@ -11,6 +11,6 @@ For questions, comments, or requests. Please dm [keta666] via Discord or email t
 Get Rid of The Command Prompt Window... ✔️
 GUI Size Changer ✔️
 Maybe colors so its not so bland ✔️
-Resolution Change
+Resolution Change ✔️
 Drop-down menu for different types of text files
 Summarization bot
