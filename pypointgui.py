@@ -24,20 +24,16 @@ def extract_text_from_pptx(pptx_file, word_output_file):
             if hasattr(shape, "text"):
                 all_text += shape.text + "\n"
     
-    # Save to a Word document
     doc = Document()
     doc.add_paragraph(all_text)
     doc.save(word_output_file)
 
 def summarize_text_with_length(text, summary_length=3):
-    # Initialize TextRankSummarizer with specific language
     summarizer = TextRankSummarizer(Stemmer("english"))
 
-    # Set summarization ratio based upon summary length
     summarizer.stop_words = get_stop_words("english")
     summarized_sentences = summarizer(PlaintextParser.from_string(text, Tokenizer("english")))
 
-    # Select specified number of sentences for summary
     num_sentences = min (len(summarized_sentences), summary_length)
     summary = " ".join(str(sentence) for sentence in summarized_sentences[:num_sentences])
 
@@ -55,13 +51,10 @@ def summarize_pptx_with_length():
             if hasattr(shape, "text"):
                 all_text += shape.text + "\n"
     
-    # Prompt the user for the summary length
     summary_length = int(input("Enter the desired summary length (number of sentences): "))
     
-    # Summarize the text with the specified length
     summarized_text = summarize_text_with_length(all_text, summary_length)
     
-    # Save the summary to a Word document
     doc = Document()
     doc.add_paragraph(summarized_text)
     doc.save(word_output_file)
@@ -91,25 +84,19 @@ def run_script_silently():
     startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     subprocess.Popen([sys.executable, script], startupinfo=startupinfo)
 
-# Create a Tkinter window
 window = tk.Tk()
 window.title("PowerPoint Notes ExtractorV0.0.3")
 
-# Allow resizing of the GUI
 window.geometry("450x250") # Initial Size
 
-# Set a random background color
 random_color = "#{:02x}{:02x}{:02x}".format(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 window.configure(bg=random_color)
 
-# Apply high contrast theme for better clarity
 window.tk_setPalette(background=random_color, foreground='white')
 
-# Add a button to run text summarization with user-defined length
 summarize_with_length_button = tk.Button(window, text="Summarize Text (Custom Length)", command=summarize_pptx_with_length)
 summarize_with_length_button.grid(row=8, column=0, columnspan=3)
 
-# Create and configure GUI elements
 author_label = tk.Label(window, text="Author: KetaGod | keta666")
 author_label.grid(row=0, column=0, columnspan=3)
 
@@ -131,7 +118,6 @@ browse_word_output_button.grid(row=2, column=2)
 extract_button.grid(row=3, column=0, columnspan=3)
 status_label.grid(row=4, column=0, columnspan=3)
 
-# Add a multi-line information label
 info_text = (
     "Thank you for using PyPoint.\n"
     "If you haven't already, please read the README.txt file.\n"
@@ -142,7 +128,6 @@ info_text = (
 info_label = tk.Label(window, text=info_text, bg=random_color, wraplength=380, justify="left")
 info_label.grid(row=6, column=0, columnspan=3)
 
-# Arrange GUI elements
 pptx_label.grid(row=1, column=0)
 pptx_entry.grid(row=1, column=1)
 browse_pptx_button.grid(row=1, column=2)
@@ -154,5 +139,4 @@ browse_word_output_button.grid(row=2, column=2)
 extract_button.grid(row=3, column=0, columnspan=3)
 status_label.grid(row=4, column=0, columnspan=3)
 
-# Start the GUI main loop
 window.mainloop()
