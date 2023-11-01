@@ -13,4 +13,8 @@ GUI Size Changer ✔️
 Maybe colors so its not so bland ✔️
 Resolution Change ✔️
 Summarization bot ✔️
-Drop-down menu for different types of text files
+Drop-down menu for different types of text files ✔️
+----NEXT PROJECTS----
+PDF Summarizer and Note Taker
+IP/SMS/Email Tracers
+Password Crackers
